@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Dampak Teknologi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .question {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Quiz Dampak Teknologi</h2>
+    <form id="quizForm">
+        <div id="quizContainer"></div>
+        <button type="button" onclick="submitQuiz()">Submit</button>
+    </form>
+    <h3 id="result"></h3>
+    
+    <script>
+        const questions = [
+            {
+                question: "Dampak positif teknologi terhadap cara berinteraksi manusia adalah",
+                options: ["Menjauhkan yang dekat", "Mempermudah komunikasi jarak jauh", "Mengurangi interaksi antar keluarga", "Menambah kesenjangan sosial"],
+                answer: 1
+            },
+            {
+                question: "Di dunia kerja modern, teknologi berperan dalam",
+                options: ["Mengurangi inovasi", "Membuat semua pekerjaan manual", "Mempercepat penyelesaian tugas dengan bantuan aplikasi dan sistem otomatis", "Menghambat komunikasi antar karyawan"],
+                answer: 2
+            },
+            {
+                question: "Teknologi mengubah cara kerja manusia, salah satunya dengan",
+                options: ["Menambah jam kerja tanpa henti", "Mempercepat proses kerja melalui otomatisasi dan kecerdasan buatan", "Menggantikan seluruh pekerjaan dengan robot", "Menghilangkan semua pekerjaan manusia"],
+                answer: 1
+            },
+            {
+                question: "Salah satu manfaat teknologi di bidang ekonomi adalah",
+                options: ["Membuka peluang usaha baru melalui e-commerce", "Mempersempit akses pasar", "Membatasi promosi produk lokal", "Menurunkan jumlah pengusaha kecil"],
+                answer: 0
+            },
+            {
+                question: "Salah satu tantangan dalam pendidikan berbasis teknologi adalah",
+                options: ["Makin banyaknya sumber belajar", "Kemudahan akses ilmu pengetahuan", "Meningkatnya literasi digital", "Akses internet yang tidak merata"],
+                answer: 3
+            },
+            {
+                question: "Salah satu contoh dampak teknologi yang kita rasakan saat ini adalah",
+                options: ["Mempermudah transaksi online dan memunculkan peluang bisnis baru", "Memperlambat inovasi produk lokal", "Menghapuskan lapangan pekerjaan", "Menutup pasar tradisional"],
+                answer: 0
+            },
+            {
+                question: "Salah satu bentuk pelanggaran UU ITE yang harus dihindari adalah",
+                options: ["Berbagi tips pendidikan digital", "Mempromosikan produk secara online", "Menyebarkan berita bohong atau hoaks", "Memberikan kritik membangun"],
+                answer: 2
+            },
+            {
+                question: "Mengapa literasi digital penting di era teknologi modern?",
+                options: ["Supaya bisa viral di media sosial", "Agar tidak mudah terjebak hoaks dan bijak menggunakan teknologi", "Agar bisa terkenal di internet", "Agar bisa selalu mengikuti tren terbaru"],
+                answer: 1
+            },
+            {
+                question: "Dalam penggunaan media sosial, hal yang harus dihindari adalah",
+                options: ["Mempromosikan budaya lokal", "Mengikuti akun edukatif", "Berbagi informasi inspiratif", "Menyebar fitnah, ujaran kebencian, atau SARA"],
+                answer: 3
+            },
+            {
+                question: "Agar terhindar dari pelanggaran UU ITE saat berinteraksi di dunia maya, kita harus",
+                options: ["Menyebarkan konten provokatif yang memecah belah", "Menghina orang lain di media sosial", "Menjaga etika berkomunikasi dan memverifikasi kebenaran informasi sebelum dibagikan", "Memposting apapun yang sedang viral tanpa cek fakta"],
+                answer: 2
+            }
+        ];
+
+        function loadQuiz() {
+            const quizContainer = document.getElementById("quizContainer");
+            quizContainer.innerHTML = "";
+            questions.forEach((q, index) => {
+                let questionHTML = `<div class='question'><strong>${index + 1}. ${q.question}</strong><br>`;
+                q.options.forEach((option, i) => {
+                    questionHTML += `<input type='radio' name='q${index}' value='${i}'> ${option}<br>`;
+                });
+                questionHTML += "</div>";
+                quizContainer.innerHTML += questionHTML;
+            });
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            questions.forEach((q, index) => {
+                const selected = document.querySelector(`input[name='q${index}']:checked`);
+                if (selected && parseInt(selected.value) === q.answer) {
+                    score++;
+                }
+            });
+            document.getElementById("result").innerText = `Skor Anda: ${score} / 10`;
+        }
+
+        loadQuiz();
+    </script>
+</body>
+</html>
